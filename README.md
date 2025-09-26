@@ -15,7 +15,7 @@ SRGZara
 
 ### data
 
-* Abstract implenentation of domain's layer.
+* Abstract implementation of domain's layer.
 * Repositories, datasources, net APIs, mappers, etc.
 
 ### app
@@ -25,7 +25,7 @@ SRGZara
 * Common utilities and helpers that the app may need.
 * Also the module where UI assets are kept - layouts, drawables, strings, etc.
 
-## Principales librerías/Jetpack/recursos de Android usados
+## Main libraries/Jetpack/Android resources used
 
 * Hilt for dependency injection
 * Retrofit and Gson for network calling
@@ -36,7 +36,7 @@ SRGZara
 * XMl, Compose and Navigation from Jetpack.
 
 
-## Explicación de la app
+## App explanation
 
 As per requirements the user can browse from the main list of characters along with some filtering.
 

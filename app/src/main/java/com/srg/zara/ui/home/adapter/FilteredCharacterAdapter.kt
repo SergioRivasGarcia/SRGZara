@@ -74,6 +74,6 @@ class FilteredCharacterAdapter(
     }
 
     interface CharacterListListener {
-        fun onCharacterClicked(user: Character)
+        fun onCharacterClicked(character: Character)
     }
 }

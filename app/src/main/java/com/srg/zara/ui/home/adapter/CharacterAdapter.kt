@@ -64,6 +64,6 @@ class CharacterAdapter(
     }
 
     interface CharacterListListener {
-        fun onCharacterClicked(user: Character)
+        fun onCharacterClicked(character: Character)
     }
 }
