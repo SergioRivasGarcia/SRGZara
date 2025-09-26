@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">SRGZara</string>
+    <string name="title_home">Inicio</string>
+    <string name="title_settings">Opciones</string>
+    <string name="retry">Reintentar</string>
+    <string name="no_result">No hay personajes :(</string>
+    <string name="search_char">Buscar personaje</string>
+    <string name="image_character">Imagen de personaje</string>
+    <string name="error_no_network">No se pudo conectar - revise conexión a internet</string>
+    <string name="option_filter">Filtrar lista</string>
+    <string name="option_filter_desc">Desactivando esta opción permitirá hacer una busqueda online de un personaje por su nombre</string>
+    <string name="language">Idioma</string>
+    <string name="english">Inglés</string>
+    <string name="spanish">Español</string>
+    <string name="filter_hint">Filtrar personajes</string>
+    <string name="filter_hint_field">Filtrar por nombre</string>
+    <string name="species_desc">Imagen de especie</string>
+    <string name="gender_desc">Imagen de género</string>
+    <string name="origin_desc">Imagen de origen</string>
+    <string name="location_desc">Imagen de lugar</string>
+    <string name="status_desc">Imagen de estado</string>
+    <string name="back_desc">Botón de retorno</string>
+    <string name="clear_cache">Limpiar caché</string>
+    <string name="cache_button_text">Limpiar</string>
+    <string name="delete_desc">Imagen de borrado</string>
+
+</resources>
