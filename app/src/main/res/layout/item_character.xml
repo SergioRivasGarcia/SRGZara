@@ -6,9 +6,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:background="?android:attr/selectableItemBackground"
         android:padding="@dimen/exp_padding">
 
         <androidx.constraintlayout.utils.widget.ImageFilterView
@@ -16,7 +16,7 @@
             android:layout_width="65dp"
             android:layout_height="65dp"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:clickable="false"
+            android:clickable="true"
             android:contentDescription="@string/image_character"
             android:focusable="true"
             android:src="@drawable/avatar_placeholder"
@@ -36,6 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/exp_padding_small"
+                android:textColor="@color/light_grey"
                 tools:text="Character Name" />
 
             <TextView
@@ -44,15 +45,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
+                android:textColor="@color/light_grey"
                 app:drawableStartCompat="@drawable/ic_species"
-                app:drawableTint="@color/design_default_color_surface"
+                app:drawableTint="@color/light_grey"
                 tools:text="Human" />
 
         </LinearLayout>
 
         <TextView
             android:id="@+id/tv_status"
-
             style="@style/TextAppearance.MaterialComponents.Subtitle2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
