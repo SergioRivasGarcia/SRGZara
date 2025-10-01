@@ -23,5 +23,10 @@
     <string name="clear_cache">Clear cache</string>
     <string name="cache_button_text">Clear</string>
     <string name="delete_desc">Delete image</string>
+    <string name="species_title">Species:</string>
+    <string name="gender_title">Gender:</string>
+    <string name="status_title">Status:</string>
+    <string name="origin_title">Origin:</string>
+    <string name="location_title">Location:</string>
 
 </resources>

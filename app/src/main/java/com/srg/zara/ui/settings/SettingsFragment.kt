@@ -7,20 +7,25 @@ import android.view.ViewGroup
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredWidth
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SegmentedButton
@@ -74,26 +79,39 @@ class SettingsFragment : Fragment() {
 
     @Composable
     fun SettingsLayout() {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(
-                    horizontal = dimensionResource(id = R.dimen.exp_padding),
-                    vertical = dimensionResource(id = R.dimen.exp_padding_medium)
-                )
-                .verticalScroll(rememberScrollState()),
-            verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.exp_padding_large))
+        Box(
+            modifier = Modifier.fillMaxSize() // Make the Box take up the full screen
         ) {
-            SwitchWithLabel(
-                getString(R.string.option_filter),
-                getString(R.string.option_filter_desc),
-                viewModel.isCheckedFilterList
+            Card(
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.surfaceVariant,
+                ),
+                modifier = Modifier
+                    .height(IntrinsicSize.Min)
+                    .wrapContentHeight()
+                    .padding(horizontal = dimensionResource(id = R.dimen.exp_padding))
+                    .align(Alignment.TopCenter)
             ) {
-                viewModel.isCheckedFilterList = it
-                viewModel.isNeedReset = viewModel.isCheckedFilterList
+                Column(
+                    modifier = Modifier
+                        .padding(vertical = dimensionResource(id = R.dimen.exp_padding_medium))
+                        .verticalScroll(rememberScrollState()),
+                    verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.exp_padding_large))
+                ) {
+                    SwitchWithLabel(
+                        getString(R.string.option_filter),
+                        getString(R.string.option_filter_desc),
+                        viewModel.isCheckedFilterList
+                    ) {
+                        viewModel.isCheckedFilterList = it
+                        viewModel.isNeedReset = viewModel.isCheckedFilterList
+                    }
+                    LanguageSelector(
+                        getString(R.string.language), viewModel.getLanguage(requireContext())
+                    )
+                    CacheCleaner()
+                }
             }
-            LanguageSelector(getString(R.string.language), viewModel.getLanguage(requireContext()))
-            CacheCleaner()
         }
     }
 
@@ -161,17 +179,17 @@ class SettingsFragment : Fragment() {
                 options.forEachIndexed { index, item ->
                     SegmentedButton(
                         shape = SegmentedButtonDefaults.itemShape(
-                        index = index, count = options.size
-                    ), onClick = {
-                        if (item.second != language) {
-                            selectedIndex = index
-                            if (item.second == ENGLISH) {
-                                viewModel.changeLocale(requireContext(), ENGLISH)
-                            } else {
-                                viewModel.changeLocale(requireContext(), SPANISH)
+                            index = index, count = options.size
+                        ), onClick = {
+                            if (item.second != language) {
+                                selectedIndex = index
+                                if (item.second == ENGLISH) {
+                                    viewModel.changeLocale(requireContext(), ENGLISH)
+                                } else {
+                                    viewModel.changeLocale(requireContext(), SPANISH)
+                                }
                             }
-                        }
-                    }, selected = item.second == language, label = { Text(item.first) })
+                        }, selected = item.second == language, label = { Text(item.first) })
                 }
             }
         }

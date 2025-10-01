@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
@@ -16,9 +17,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -27,6 +32,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.ComposeView
@@ -35,6 +41,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -77,7 +84,7 @@ class CharDetailFragment : Fragment() {
                 contentDescription = stringResource(id = R.string.back_desc),
                 colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.inverseSurface),
                 modifier = Modifier
-                    .padding(dimensionResource(id = R.dimen.exp_padding))
+                    .padding(start = dimensionResource(id = R.dimen.exp_padding))
                     .size(dimensionResource(id = R.dimen.icon_large))
                     .clickable(
                         interactionSource = interactionSource,
@@ -93,75 +100,134 @@ class CharDetailFragment : Fragment() {
                     .verticalScroll(rememberScrollState()),
             ) {
                 character?.let {
-                    AsyncImage(
-                        model = character.image,
-                        placeholder = painterResource(R.drawable.avatar_placeholder),
-                        contentDescription = stringResource(id = R.string.image_character),
-                        contentScale = ContentScale.Crop,
+                    Card(
+                        colors = CardDefaults.cardColors(
+                            containerColor = MaterialTheme.colorScheme.surfaceVariant,
+                        ),
                         modifier = Modifier
-                            .clip(CircleShape)
-                            .size(dimensionResource(id = R.dimen.avatar_large))
-                            .align(Alignment.CenterHorizontally),
-                        error = painterResource(R.drawable.avatar_placeholder)
-                    )
+                            .fillMaxSize()
+                            .padding(horizontal = dimensionResource(id = R.dimen.exp_padding))
+                    ) {
+                        AsyncImage(
+                            model = character.image,
+                            placeholder = painterResource(R.drawable.avatar_placeholder),
+                            contentDescription = stringResource(id = R.string.image_character),
+                            contentScale = ContentScale.Crop,
+                            modifier = Modifier
+                                .padding(top = dimensionResource(id = R.dimen.exp_padding))
+                                .size(dimensionResource(id = R.dimen.avatar_large))
+                                .clip(CircleShape)
+                                .border(
+                                    dimensionResource(id = R.dimen.exp_padding_small),
+                                    MaterialTheme.colorScheme.primary,
+                                    CircleShape
+                                )
+                                .align(Alignment.CenterHorizontally),
+                            error = painterResource(R.drawable.avatar_placeholder)
+                        )
 
-                    Text(
-                        text = it.name,
-                        style = MaterialTheme.typography.headlineLarge,
+                        Text(
+                            text = it.name,
+                            style = MaterialTheme.typography.headlineLarge,
+                            modifier = Modifier
+                                .align(Alignment.CenterHorizontally)
+                                .padding(top = dimensionResource(id = R.dimen.exp_padding_small))
+                        )
+                    }
+
+                    Card(
+                        colors = CardDefaults.cardColors(
+                            containerColor = MaterialTheme.colorScheme.surfaceVariant,
+                        ),
                         modifier = Modifier
-                            .align(Alignment.CenterHorizontally)
-                            .padding(dimensionResource(id = R.dimen.exp_padding))
-                    )
+                            .fillMaxSize()
+                            .padding(horizontal = dimensionResource(id = R.dimen.exp_padding))
+                            .padding(top = dimensionResource(id = R.dimen.exp_padding))
+                    ) {
 
-                    DataField(
-                        R.drawable.ic_species,
-                        it.species,
-                        stringResource(id = R.string.species_desc)
-                    )
-                    DataField(
-                        R.drawable.ic_gender,
-                        it.gender,
-                        stringResource(id = R.string.gender_desc)
-                    )
-                    DataField(
-                        R.drawable.ic_status,
-                        it.status,
-                        stringResource(id = R.string.status_desc)
-                    )
-                    DataField(
-                        R.drawable.ic_origin,
-                        it.origin.name,
-                        stringResource(id = R.string.origin_desc)
-                    )
-                    DataField(
-                        R.drawable.ic_location,
-                        it.location.name,
-                        stringResource(id = R.string.location_desc)
-                    )
+                        DataField(
+                            R.drawable.ic_species,
+                            it.species,
+                            stringResource(id = R.string.species_title),
+                            stringResource(id = R.string.species_desc)
+                        )
+                        Divider()
+                        DataField(
+                            R.drawable.ic_gender,
+                            it.gender,
+                            stringResource(id = R.string.gender_title),
+                            stringResource(id = R.string.gender_desc)
+                        )
+                        Divider()
+                        DataField(
+                            R.drawable.ic_status,
+                            it.status,
+                            stringResource(id = R.string.status_title),
+                            stringResource(id = R.string.status_desc)
+                        )
+                        Divider()
+                        DataField(
+                            R.drawable.ic_origin,
+                            it.origin.name,
+                            stringResource(id = R.string.origin_title),
+                            stringResource(id = R.string.origin_desc)
+                        )
+                        Divider()
+                        DataField(
+                            R.drawable.ic_location,
+                            it.location.name,
+                            stringResource(id = R.string.location_title),
+                            stringResource(id = R.string.location_desc)
+                        )
+                    }
                 }
             }
         }
     }
 
     @Composable
-    fun DataField(imageId: Int, text: String, contentDesc: String) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
+    fun Divider() {
+        HorizontalDivider(
             modifier = Modifier
-                .fillMaxWidth(1f)
-                .padding(start = dimensionResource(id = R.dimen.exp_padding_medium))
+                .width(dimensionResource(id = R.dimen.avatar_large))
+                .padding(horizontal = dimensionResource(id = R.dimen.exp_padding)),
+            thickness = 1.dp,
+            color = Color.LightGray
+        )
+    }
+
+    @Composable
+    fun DataField(imageId: Int, text: String, title: String, contentDesc: String) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(dimensionResource(id = R.dimen.exp_padding)),
         ) {
-            Image(
-                painter = painterResource(id = imageId),
-                contentDescription = contentDesc,
-                colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.inverseSurface),
-            )
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .fillMaxWidth(1f)
+            ) {
+                Image(
+                    painter = painterResource(id = imageId),
+                    contentDescription = contentDesc,
+                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.inverseSurface),
+                    modifier = Modifier
+                        .padding(end = dimensionResource(id = R.dimen.exp_padding_small)),
+                )
+                Text(
+                    text = title,
+                    textAlign = TextAlign.Start,
+                    style = MaterialTheme.typography.titleMedium,
+
+                    )
+            }
             Text(
                 text = text,
                 textAlign = TextAlign.Start,
                 style = MaterialTheme.typography.titleLarge,
-                modifier = Modifier.padding(dimensionResource(id = R.dimen.exp_padding))
-            )
+
+                )
         }
     }
 

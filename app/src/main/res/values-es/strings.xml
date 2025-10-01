@@ -23,5 +23,10 @@
     <string name="clear_cache">Limpiar caché</string>
     <string name="cache_button_text">Limpiar</string>
     <string name="delete_desc">Imagen de borrado</string>
+    <string name="species_title">Especie:</string>
+    <string name="gender_title">Género:</string>
+    <string name="status_title">Estado:</string>
+    <string name="origin_title">Origen:</string>
+    <string name="location_title">Ubicación:</string>
 
 </resources>
