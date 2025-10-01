@@ -56,9 +56,7 @@ class CharDetailFragment : Fragment() {
     private val viewModel: CharDetailViewModel by activityViewModels()
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         return ComposeView(requireContext()).apply {
             setContent {
@@ -76,8 +74,7 @@ class CharDetailFragment : Fragment() {
     fun CharacterLayout(character: Character?) {
         val interactionSource = remember { MutableInteractionSource() }
         Column(
-            modifier = Modifier
-                .fillMaxSize(),
+            modifier = Modifier.fillMaxSize(),
         ) {
             Image(
                 painter = painterResource(id = R.drawable.ic_back),
@@ -90,8 +87,7 @@ class CharDetailFragment : Fragment() {
                         interactionSource = interactionSource,
                         indication = null,
                         role = Role.Button,
-                        onClick = { findNavController().popBackStack() }
-                    ),
+                        onClick = { findNavController().popBackStack() }),
             )
 
             Column(
@@ -131,7 +127,8 @@ class CharDetailFragment : Fragment() {
                             style = MaterialTheme.typography.headlineLarge,
                             modifier = Modifier
                                 .align(Alignment.CenterHorizontally)
-                                .padding(top = dimensionResource(id = R.dimen.exp_padding_small))
+                                .padding(top = dimensionResource(id = R.dimen.exp_padding_small)),
+                            color = MaterialTheme.colorScheme.inverseSurface
                         )
                     }
 
@@ -204,44 +201,39 @@ class CharDetailFragment : Fragment() {
                 .padding(dimensionResource(id = R.dimen.exp_padding)),
         ) {
             Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier
-                    .fillMaxWidth(1f)
+                verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth(1f)
             ) {
                 Image(
                     painter = painterResource(id = imageId),
                     contentDescription = contentDesc,
                     colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.inverseSurface),
-                    modifier = Modifier
-                        .padding(end = dimensionResource(id = R.dimen.exp_padding_small)),
+                    modifier = Modifier.padding(end = dimensionResource(id = R.dimen.exp_padding_small)),
                 )
                 Text(
                     text = title,
                     textAlign = TextAlign.Start,
                     style = MaterialTheme.typography.titleMedium,
-
-                    )
+                    color = MaterialTheme.colorScheme.secondary
+                )
             }
             Text(
                 text = text,
                 textAlign = TextAlign.Start,
                 style = MaterialTheme.typography.titleLarge,
-
-                )
+                color = MaterialTheme.colorScheme.inverseSurface
+            )
         }
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        val callback: OnBackPressedCallback =
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    findNavController().popBackStack()
-                }
+        val callback: OnBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().popBackStack()
             }
+        }
         requireActivity().onBackPressedDispatcher.addCallback(
-            this,
-            callback
+            this, callback
         )
     }
 
