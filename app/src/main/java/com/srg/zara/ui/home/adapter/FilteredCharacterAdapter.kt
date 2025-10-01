@@ -68,7 +68,15 @@ class FilteredCharacterAdapter(
         if (text.isEmpty()) {
             filteredItems.addAll(items)
         } else {
-            filteredItems.addAll(items.filter { it.name.contains(text, ignoreCase = true) })
+            filteredItems.addAll(items.filter {
+                it.name.contains(text, ignoreCase = true)
+                        || it.status.contains(text, ignoreCase = true)
+                        || it.species.contains(text, ignoreCase = true)
+                        || it.type.contains(text, ignoreCase = true)
+                        || it.gender.contains(text, ignoreCase = true)
+                        || it.origin.name.contains(text, ignoreCase = true)
+                        || it.location.name.contains(text, ignoreCase = true)
+            })
         }
         notifyDataSetChanged()
     }

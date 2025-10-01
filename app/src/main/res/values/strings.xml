@@ -8,12 +8,12 @@
     <string name="image_character">Character image</string>
     <string name="error_no_network">Could not connect - check internet connection</string>
     <string name="option_filter">Filter list</string>
-    <string name="option_filter_desc">Disabling this option would allow to perform an online character search by name</string>
+    <string name="option_filter_desc">Disabling this option will allow to perform an online character search by name</string>
     <string name="language">Language</string>
     <string name="english">English</string>
     <string name="spanish">Spanish</string>
     <string name="filter_hint">Filter characters</string>
-    <string name="filter_hint_field">Filter by name</string>
+    <string name="filter_hint_field">Type to filter</string>
     <string name="species_desc">Species image</string>
     <string name="gender_desc">Gender image</string>
     <string name="origin_desc">Origin image</string>

@@ -13,7 +13,7 @@
     <string name="english">Inglés</string>
     <string name="spanish">Español</string>
     <string name="filter_hint">Filtrar personajes</string>
-    <string name="filter_hint_field">Filtrar por nombre</string>
+    <string name="filter_hint_field">Escriba para filtrar</string>
     <string name="species_desc">Imagen de especie</string>
     <string name="gender_desc">Imagen de género</string>
     <string name="origin_desc">Imagen de origen</string>
