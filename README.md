@@ -49,8 +49,8 @@ Initial definitions are done here, it is also where the navigation bottom bar is
 It is the main fragment that loads when the app opens. It loads the list of characters from the REST
 API which will keep loading more data as the user scrolls down. The list will show a shimmer effect
 when the network calls takes long, though an initial delay of 2 seconds it setup to display such
-behaviour. On the top there is a search bar to filter characters by name. Additionally the user can 
-perform a search online (also by name) when the option is toggled in the [SettingsFragment]. All the
+behaviour. On the top there is a search bar to filter characters by text. Additionally the user can 
+perform a search online by name when the option is toggled in the [SettingsFragment]. All the
 data is kept in cache and will load if no net is found if loaded previously, also works with images 
 thanks to Coil. There are error snackbars that will show if some network error triggers. Upon 
 clicking on one of the items of the list the user will be taken to [CharDetailFragment]. The data is
