@@ -140,7 +140,8 @@ class SettingsFragment : Fragment() {
                 verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.exp_padding))
             ) {
                 Text(
-                    text = label, style = MaterialTheme.typography.titleLarge
+                    text = label, style = MaterialTheme.typography.titleLarge,
+                    color = MaterialTheme.colorScheme.inverseSurface
                 )
 
                 Text(
@@ -173,7 +174,8 @@ class SettingsFragment : Fragment() {
             verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.exp_padding))
         ) {
             Text(
-                text = label, style = MaterialTheme.typography.titleLarge
+                text = label, style = MaterialTheme.typography.titleLarge,
+                color = MaterialTheme.colorScheme.inverseSurface
             )
             SingleChoiceSegmentedButtonRow {
                 options.forEachIndexed { index, item ->
@@ -203,7 +205,8 @@ class SettingsFragment : Fragment() {
         ) {
             Text(
                 text = stringResource(id = R.string.clear_cache),
-                style = MaterialTheme.typography.titleLarge
+                style = MaterialTheme.typography.titleLarge,
+                color = MaterialTheme.colorScheme.inverseSurface
             )
             Button(
                 onClick = { viewModel.clearCache() },
