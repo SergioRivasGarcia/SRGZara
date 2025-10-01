@@ -10,6 +10,7 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import android.widget.TextView.OnEditorActionListener
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -18,9 +19,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.srg.zara.util.on
-import com.srg.zara.util.viewBinding
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.srg.domain.base.DataResult
@@ -32,6 +33,8 @@ import com.srg.zara.ui.home.adapter.CharacterAdapter
 import com.srg.zara.ui.home.adapter.EndlessScrollListener
 import com.srg.zara.ui.home.adapter.FilteredCharacterAdapter
 import com.srg.zara.ui.settings.SettingsViewModel
+import com.srg.zara.util.on
+import com.srg.zara.util.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -215,12 +218,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 })
 
                 characterAdapter =
-                    CharacterAdapter(object : CharacterAdapter.CharacterListListener {
-                        override fun onCharacterClicked(character: Character) {
-                            charDetailViewModel.character = character
-                            findNavController().navigate(R.id.action_navigation_home_to_charDetailFragment)
-                        }
-                    })
+                    CharacterAdapter(
+                        requireContext(),
+                        object : CharacterAdapter.CharacterListListener {
+                            override fun onCharacterClicked(character: Character) {
+                                charDetailViewModel.character = character
+                                findNavController().navigate(R.id.action_navigation_home_to_charDetailFragment)
+                            }
+                        })
 
                 rvCharacters.addOnScrollListener(object : EndlessScrollListener() {
                     override fun onLoadMore() {
@@ -237,7 +242,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 })
 
                 filteredCharacterAdapter =
-                    FilteredCharacterAdapter(object :
+                    FilteredCharacterAdapter(requireContext(), object :
                         FilteredCharacterAdapter.CharacterListListener {
                         override fun onCharacterClicked(character: Character) {
                             charDetailViewModel.character = character
@@ -282,6 +287,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             filteredCharacterAdapter.setData(data)
             rvFilteredCharacters.layoutManager = LinearLayoutManager(context)
             rvFilteredCharacters.adapter = filteredCharacterAdapter
+
+            val dividerItemDecoration =
+                DividerItemDecoration(requireContext(), RecyclerView.VERTICAL)
+            ResourcesCompat.getDrawable(resources, R.drawable.divider, null)
+                ?.let { drawable -> dividerItemDecoration.setDrawable(drawable) }
+            rvCharacters.addItemDecoration(dividerItemDecoration)
+            rvFilteredCharacters.addItemDecoration(dividerItemDecoration)
 
             tvNoChars.isVisible = data.isEmpty()
         }

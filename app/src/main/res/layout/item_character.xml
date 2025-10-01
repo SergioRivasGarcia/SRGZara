@@ -3,55 +3,61 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <com.google.android.material.card.MaterialCardView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/exp_padding_small"
-        app:cardCornerRadius="5dp">
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/exp_padding">
+
+        <androidx.constraintlayout.utils.widget.ImageFilterView
+            android:id="@+id/iv_character"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:contentDescription="@string/image_character"
+            android:focusable="true"
+            android:src="@drawable/avatar_placeholder"
+            app:roundPercent="1" />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingHorizontal="@dimen/exp_padding"
-            android:paddingVertical="@dimen/exp_padding_small">
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/exp_padding_small"
+            android:paddingEnd="0dp">
 
-            <LinearLayout
-                android:layout_width="0dp"
+            <TextView
+                android:id="@+id/tv_title"
+                style="@style/TextAppearance.MaterialComponents.Headline6"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:padding="@dimen/exp_padding_small"
+                tools:text="Character Name" />
 
-                <TextView
-                    android:id="@+id/tv_title"
-                    style="@style/TextAppearance.MaterialComponents.Headline6"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/exp_padding_small"
-                    tools:text="Character Name" />
-
-                <TextView
-                    android:id="@+id/tv_species"
-                    style="@style/TextAppearance.MaterialComponents.Subtitle2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/exp_padding_small"
-                    tools:text="Human" />
-
-            </LinearLayout>
-
-            <ImageView
-                android:id="@+id/iv_character"
-                android:layout_width="65dp"
-                android:layout_height="65dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:clickable="true"
-                android:contentDescription="@string/image_character"
-                android:focusable="true"
-                android:src="@drawable/avatar_placeholder" />
+            <TextView
+                android:id="@+id/tv_species"
+                style="@style/TextAppearance.MaterialComponents.Subtitle2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                app:drawableStartCompat="@drawable/ic_species"
+                app:drawableTint="@color/design_default_color_surface"
+                tools:text="Human" />
 
         </LinearLayout>
 
-    </com.google.android.material.card.MaterialCardView>
+        <TextView
+            android:id="@+id/tv_status"
+
+            style="@style/TextAppearance.MaterialComponents.Subtitle2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/exp_padding_small"
+            tools:text="Alive" />
+
+    </LinearLayout>
+
 </layout>

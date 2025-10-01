@@ -1,6 +1,7 @@
 package com.srg.zara.ui.home.adapter
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -8,8 +9,10 @@ import coil.load
 import com.srg.domain.zara.entity.Character
 import com.srg.zara.R
 import com.srg.zara.databinding.ItemCharacterBinding
+import com.srg.zara.util.setTextColorStatus
 
 class FilteredCharacterAdapter(
+    private val context: Context,
     private val listener: CharacterListListener
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -39,6 +42,8 @@ class FilteredCharacterAdapter(
                 }
                 tvTitle.text = item.name
                 tvSpecies.text = item.species
+                tvStatus.text = item.status
+                tvStatus.setTextColorStatus(context, tvStatus.text)
                 root.setOnClickListener {
                     listener.onCharacterClicked(item)
                 }
