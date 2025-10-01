@@ -16,7 +16,7 @@
             android:layout_width="65dp"
             android:layout_height="65dp"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:clickable="true"
+            android:clickable="false"
             android:contentDescription="@string/image_character"
             android:focusable="true"
             android:src="@drawable/avatar_placeholder"
